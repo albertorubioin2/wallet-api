@@ -1,0 +1,59 @@
+spring:
+  application:
+    name: Wallet API MS
+
+server:
+  port: 8088
+
+app:
+  url:
+    api: http://localhost:8088
+    wca-baseurl: http://localhost:8087
+
+# Logging configuration
+logging:
+  level:
+    # Set the log level for the entire application
+    root: INFO
+    # Set log level for specific packages or classes
+    es.in2.wallet.service: DEBUG
+    es.in2.wallet.util: DEBUG
+
+management:
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: health
+      base-path: /
+      path-mapping:
+        health: health
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /spring-ui
+    tags-sorter: alpha
+    operations-sorter: method
+
+openapi:
+  server:
+    url: http://localhost:8088
+    description: Spring MS Wallet API
+  info:
+    title: IN2 Gencat IEP Wallet API MS Project
+    version: 0.0.1
+    termsOfService: $apiUrl/terms-of-service
+    license:
+      name: MIT License
+      url: https://choosealicense.com/licenses/mit/
+    contact:
+      email: contacto@in2.es
+      name: IN2
+      url: https://in2.es
+    description: This API exposes endpoints of the Wallet component which will be used to process QR codes
